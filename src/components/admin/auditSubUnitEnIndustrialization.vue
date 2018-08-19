@@ -1,35 +1,48 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="6">
-                <el-input icon="search" v-model="searchContent" placeholder="请输入要查询的内容" class="search-input">
+            <el-col :span="6" push="1">
+            <el-row>
+                <el-input icon="search" v-model="searchContent" placeholder="请输入要查询的内容" class="search-input" style="width:300px">
                 </el-input>
+                </el-row>
+                <el-row>
                     <el-date-picker
                       v-model="searchTime"
                       type="daterange"
+                      style="width:300px"
                       placeholder="选择日期范围">
-                    </el-date-picker><el-button @click="handleSearch">查询</el-button>
+                    </el-date-picker>
+                    </el-row>
+                    <el-button @click="handleSearch">查询</el-button>
             </el-col>
         </el-row>
         <el-row>
-            <el-col :span="10">
+            <el-col :span="10" push="1">
             <el-table
             :data="subUnitEnIndustrializationTable"
             stripe
             border
-            style="width:60%"
+            style="width:70%"
             highlight-current-row
             @current-change="handleSelectionChange">
                 <el-table-column
                   label="序号"
+                  width="70px"
+                  align="center"
                   type="index">
                 </el-table-column>
-                <el-table-column label="企业名称" prop="subUnitEn.name" > 
+                <el-table-column label="企业名称" 
+                prop="subUnitEn.name" 
+                align="center"> 
                 </el-table-column>
-                <el-table-column label="填报时间" prop="declareTime" > 
+                <el-table-column label="填报时间" 
+                prop="declareTime" 
+                align="center"> 
                 </el-table-column>
             </el-table>
             <el-row>
+            <br>
                 <el-col :span="10">
                     <el-pagination
                       @size-change="handleSizeChange"
@@ -49,6 +62,7 @@
                     <el-button @click="rebutAudit">驳回</el-button>
                     <el-button type="primary" @click="passAudit">通过</el-button>
                 </el-col> 
+                <br>
             </el-row>
             <el-row>
                 <el-col :span="6">生产的主要构件和部品系列</el-col>
@@ -57,33 +71,57 @@
             </el-row>
             <el-row >
                 <el-col :span="6">整体墙板</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralWallNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralWallAbility}}万平方米</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralWallNum" disabled><template slot="append"></template></el-input>
+               <!--  {{this.subUnitEnIndustrializationData.integralWallNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralWallAbility" disabled><template slot="append">万平方米</template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralWallAbility}}万平方米 -->
+                </el-col>
             </el-row>
             <el-row >
                 <el-col :span="6">结构保温装饰一体化外墙</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integrativeExternalWallNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integrativeExternalWallAbility}}万平方米</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integrativeExternalWallNum" disabled><template slot="append"></template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integrativeExternalWallNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integrativeExternalWallAbility" disabled><template slot="append">万平方米</template></el-input>
+               <!--  {{this.subUnitEnIndustrializationData.integrativeExternalWallAbility}}万平方米 -->
+                </el-col>
             </el-row>
             <el-row >
                 <el-col :span="6">预制楼梯</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.prebuiltStairsNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.prebuiltStairsAbility}}万平方米</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.prebuiltStairsNum" disabled><template slot="append"></template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.prebuiltStairsNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.prebuiltStairsAbility" disabled><template slot="append">万平方米</template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.prebuiltStairsAbility}}万平方米 -->
+                </el-col>
             </el-row>
             <el-row >
                 <el-col :span="6">整体厨房</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralKitchenNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralKitchenAbility}}台套/年</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralKitchenNum" disabled><template slot="append"></template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralKitchenNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralKitchenAbility" disabled><template slot="append">台套/年</template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralKitchenAbility}}台套/年 -->
+                </el-col>
             </el-row>
             <el-row >
                 <el-col :span="6">整体卫生间</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralToiletNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralToiletAbility}}台套/年</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralToiletNum" disabled><template slot="append"></template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralToiletNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralToiletAbility" disabled><template slot="append">台套/年</template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralToiletAbility}}台套/年 -->
+                </el-col>
             </el-row>
             <el-row >
                 <el-col :span="6">整体内装体系</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralInteriorDecorationNum}}</el-col>
-                <el-col :span="5">{{this.subUnitEnIndustrializationData.integralInteriorDecorationAbility}}万平方米</el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralInteriorDecorationNum" disabled><template slot="append"></template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralInteriorDecorationNum}} -->
+                </el-col>
+                <el-col :span="5"><el-input v-model="this.subUnitEnIndustrializationData.integralInteriorDecorationAbility" disabled><template slot="append">万平方米</template></el-input>
+                <!-- {{this.subUnitEnIndustrializationData.integralInteriorDecorationAbility}}万平方米 -->
+                </el-col>
             </el-row>
             
             </el-col>
