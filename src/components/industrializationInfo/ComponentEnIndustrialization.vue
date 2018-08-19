@@ -679,15 +679,15 @@ import msgDialog from '../common/msgDialog.vue'
 	}
 </script>
 <style type="text/css">
-	#header{
+	/*#header{
 		width: 100%;
 		height: 10%;
 		float: left;
 		margin-top: -30px;
-	}
-	/*.timeInput{
-		width: 100px;
 	}*/
+	.timeInput{
+		width: 100px;
+	}
 	.dateInput{
 		width: 200px;
 	}
