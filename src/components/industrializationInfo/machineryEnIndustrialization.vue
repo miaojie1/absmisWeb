@@ -1,7 +1,7 @@
 <template>
     <div>
         <el-row>
-            <el-col :span="10">
+            <el-col :span="10" push="1">
                 <span>填报起止时间</span>
                 <el-date-picker
                   v-model="searchTime"
@@ -11,19 +11,20 @@
                 <el-button @click="handleSearch">查询</el-button>
             </el-col>
             <el-col :span="2"></el-col>
-            <el-col :span="12" push="4">
+            <el-col :span="12" push="5">
             <el-col :span="3">
                 <el-button @click="showAddDialogVisible">增加</el-button>
             </el-col>
-            <el-col :span="3" >
+            <el-col :span="3">
                 <el-button @click="deleteRowData">删除</el-button>
             </el-col>
-            <el-col :span="3" >
+            <el-col :span="3">
                 <el-button @click="showEditDialogVisible">修改</el-button>
             </el-col>
             </el-col>
         </el-row>
         <el-row>
+        <el-col push="1">
         <el-table
         :data="machineryEnIndustrializationTable"
         stripe
@@ -55,6 +56,7 @@
               layout="total, sizes, prev, pager, next, jumper"
               :total="totalNumber">
             </el-pagination>
+            </el-col>
             </el-row>
         <!-- 增加弹出框 -->
         <el-dialog title="增加施工设备企业产业化信息" :visible.sync="addDialogVisible">

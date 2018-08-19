@@ -5,6 +5,8 @@
 		<el-button @click="remove(selectedRow)">删除</el-button>
 		<el-button @click="update(selectedRow)">修改</el-button>
 	</el-row>
+	<el-col :span="20" push="2">
+
 	<el-table
 	:data="industrializationInfoData"
 	highlight-current-row
@@ -13,6 +15,7 @@
 	style="width: 100%">
 		<el-table-column
 		prop="declareTime"
+		width="100px"
 		align="center"
 		label="填报时间"
 		></el-table-column>	
@@ -41,6 +44,7 @@
     layout="total, sizes, prev, pager, next, jumper"
     :total="totalIndustrializationInfoData">
 	</el-pagination>
+	</el-col>
 	<el-dialog v-model="showAddDialog" title="增加">		
 		<el-form :model="addData" :rules="rules" ref="ruleForm">
 			<el-form-item prop="declareTime">

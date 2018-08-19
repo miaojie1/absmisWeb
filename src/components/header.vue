@@ -1,11 +1,7 @@
 <template>
 <div id="header">
     <div class="headerContent">
-<<<<<<< HEAD
     	<p style="color:#8492A6;font-size:20px">装配式建筑信息管理系统</p>
-=======
-    	<p style="color:#8492A6">装配式建筑信息系拒绝统</p>
->>>>>>> f8d44a6727fe672b6a9445fab98c81da46cc08c9
     </div>
     <div style="width:20%;float:left;padding-top:15px">
     	<p>{{ "当前用户：" + currentUser}}</p>

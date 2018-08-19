@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<el-col :span="4" push="1">
+		<el-col :span="5" push="1">
 			<el-button-group>
 				<el-button type="primary" @click="add">增加</el-button>
 				<el-button type="primary" @click="remove(selectedRowId)">删除</el-button>
@@ -12,15 +12,17 @@
 			highlight-current-row
 			border
 			@row-click="handleRowChange"
-			style="width: 250">		
+			style="width:220">		
 			<el-table-column
 			prop="componentEn.name"
+			align="center"
 			width="120px"
 			label="企业名称">
 			</el-table-column>
 			<el-table-column
 			prop="declareTime"
-			width="100px"
+			width="111px"
+			align="center"
 			label="填报时间">
 			</el-table-column>
 			</el-table>
@@ -36,7 +38,7 @@
 		    :total="totalComponentIndustrializationData">
 			</el-pagination>
 		</el-col>
-		<el-col :span="18" push="2">
+		<el-col :span="18" push="1">
 			<el-form :model="selectedRow" :rules="rules" ref="ruleForm">
 			<el-row>
 			<el-col :span="9" push="2">

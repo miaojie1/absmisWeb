@@ -1,18 +1,20 @@
 <template>
     <div>
         <el-row>
-        <el-col :span="2">
+        <el-col :span="5" push="1">
+       
             <el-button @click="setCurrent">增加</el-button>
-        </el-col>
-        <el-col :span="2" >
+        
+        
             <el-button @click="deleteRowData">删除</el-button>
-        </el-col>
-        <el-col :span="2" >
+       
+     
             <el-button @click="showEditDialogVisible">修改</el-button>
+        
         </el-col>
     </el-row>
     <el-row>
-        <el-col :span="6">
+        <el-col :span="5" push="1">
             <el-table
             :data="subUnitEnIndustrializationTable"
             stripe
@@ -22,12 +24,18 @@
             @current-change="handleCurrentChange">
                 <el-table-column
                   label="序号"
+                  align="center"
                   type="index"
-                  width="55">
+                  width="95">
                 </el-table-column>
-                <el-table-column label="填报时间" prop="declareTime"> 
+                <el-table-column 
+                label="填报时间" 
+                align="center"
+                width="123"
+                prop="declareTime"> 
                 </el-table-column>
             </el-table>
+            <br>
             <el-pagination
             @current-change="handlePageNumChange"
             @size-change="handlePageSizeChange"
@@ -38,26 +46,26 @@
             :total="total">
             </el-pagination>
         </el-col>
-        <el-col :span="18">
+        <el-col :span="18" push="3">
             <el-form :model="subUnitEnIndustrializationForm" label-width="100px" :rules="rules" ref="subUnitEnIndustrializationForm">
                 <el-row :gutter="0">
-                    <el-col :span="2">年份</el-col>
-                    <el-col :span="6" :pull="3">
+                    <el-col :span="2">年份：</el-col>
+                    <el-col :span="5" pull="3">
                         <el-form-item prop="year">
                             <el-input  type="number" v-model.number="subUnitEnIndustrializationForm.year" min="2000">
                             </el-input>
                         </el-form-item>
                     </el-col>
-                    <el-col :span="2" :pull="2">季度</el-col>
-                    <el-col :span="5" :pull="5" >
+                    <el-col :span="2" pull="3">季度：</el-col>
+                    <el-col :span="5" pull="6">
                         <el-form-item prop="quarter">
                              <el-input  type="number" auto-complete="off" v-model.number="subUnitEnIndustrializationForm.quarter" min="1" max="4">
                             </el-input>
                         </el-form-item>
                     </el-col>
                    
-                    <el-col :span="3" :pull="3">填报时间</el-col>
-                    <el-col :span="6" :pull="5" >
+                    <el-col :span="3" pull="5">填报时间：</el-col>
+                    <el-col :span="6" pull="8">
                         <el-form-item prop="declareTime">
                             <el-date-picker
                               v-model="subUnitEnIndustrializationForm.declareTime"
