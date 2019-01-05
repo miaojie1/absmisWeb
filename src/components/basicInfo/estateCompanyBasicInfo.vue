@@ -2,9 +2,7 @@
 <div>
     <el-form :model="estateInformation" label-width="190px" :rules='rules' ref='estateInformation' :inline="true">
     <!-- 调用组件，进行页面显示 -->
-        <part-basic-info :basicInfoData="estateInformation" @checkOthers="checkOthers('estateInformation')" ref='partBasicInfo'></part-basic-info>
-
-        
+        <part-basic-info :basicInfoData="estateInformation" @checkOthers="checkOthers('estateInformation')" ref='partBasicInfo'></part-basic-info>   
         <el-form-item label="资质证书编号" prop="qualificationNo" label-width="180px">
             <el-input v-model="estateInformation.qualificationNo"></el-input>
         </el-form-item>

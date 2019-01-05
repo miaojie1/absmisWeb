@@ -41,7 +41,7 @@
     </el-row>
 
     <!-- Add Dialog -->
-    <el-dialog title="添加" :visible.sync="addDialogVisible">
+    <el-dialog title="添加" :visible.sync="addDialogVisible" :modal-append-to-body='false'>
       <el-form>
         <unitEngineering-info-add-dialog
           :unitEngineeringDialog="unitEngineeringForAddForm"
@@ -57,11 +57,11 @@
     <!-- Add Dialog Finished-->
 
     <!-- Edit Dialog-->
-    <el-dialog title="修改" :visible.sync="editDialogVisible">
+    <el-dialog title="修改" :visible.sync="editDialogVisible" :modal-append-to-body='false'>
       <div>
         <unitEngineering-info-edit-dialog
           :unitEngineeringDialog="unitEngineeringForUpdateForm"
-        @submitUpdateForm="submitUpdateForm"ref="unitEngineeringUpdate"></unitEngineering-info-edit-dialog>
+        @submitUpdateForm="submitUpdateForm" ref="unitEngineeringUpdate"></unitEngineering-info-edit-dialog>
       </div>
 
       <div slot="footer">
@@ -73,14 +73,14 @@
     <!-- Edit Dialog Finished -->
 
     <!-- Delete Dialog-->
-    <el-dialog title="删除" :visible.sync="delConfirmationDialogVisible">
+    <el-dialog title="删除" :visible.sync="delConfirmationDialogVisible" :modal-append-to-body='false'>
       <el-row>
         <div>
           <label>确认删除以下企业吗？</label>
           <!-- 换行 -->
           <el-row>{{ }}</el-row>
           <el-row>
-            <label v-for="row in tableSelectedRows">
+            <label v-for="(row, index) in tableSelectedRows" :key="index">
               <el-row></el-row>
               {{row.name}}
             </label>
@@ -89,22 +89,20 @@
       </el-row>
       <div slot="footer">
         <el-button @click="delConfirmationDialogVisible = false">取 消</el-button>
-
         <el-button type="primary" @click="deleteUnitEngineering">确 定</el-button>
       </div>
     </el-dialog>
     <!-- Delete Dialog Finished -->
-
     <!-- 调用子组件，为了利用ref来调用子组件中的方法，实际无显示效果 -->
     <msg-dialog ref="msgDialog"></msg-dialog>
   </div>
 </template>
 <script>
- import unitEngineeringInfoEditDialog from './unitEngineeringInfoEditDialog'
-  import unitEngineeringInfoAddDialog from './unitEngineeringInfoAddDialog'
-  import moment from 'moment'
- import msgDialog from '../common/msgDialog'
- import unitEngineeringInformationTable from './unitEngineeringInformationTable'
+import unitEngineeringInfoEditDialog from './unitEngineeringInfoEditDialog'
+import unitEngineeringInfoAddDialog from './unitEngineeringInfoAddDialog'
+import moment from 'moment'
+import msgDialog from '../common/msgDialog'
+import unitEngineeringInformationTable from './unitEngineeringInformationTable'
   export default{
     data(){
       return {

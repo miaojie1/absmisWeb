@@ -1,193 +1,192 @@
 <template>
-<div id="body">
-	<el-row>
-		<el-button @click="add" id="addBtn">增加</el-button>
-		<el-button @click="remove(selectedRow)">删除</el-button>
-		<el-button @click="update(selectedRow)">修改</el-button>
-	</el-row>
-	<el-col :span="20" push="2">
-
-	<el-table
-	:data="industrializationInfoData"
-	highlight-current-row
-	border
-	@row-click="handleSelectionChange"
-	style="width: 100%">
-		<el-table-column
-		prop="declareTime"
-		width="100px"
-		align="center"
-		label="填报时间"
-		></el-table-column>	
-		<el-table-column
-		prop="addNewConcrete"
-		align="center"
-		label="新增装配式混凝土结构建筑的数量"
-		></el-table-column>
-		<el-table-column
-		prop="addNewSteel"
-		align="center"
-		label="新增装配式钢结构建筑的数量"
-		></el-table-column>
-		<el-table-column
-		prop="addNewTimber"
-		align="center"
-		label="新增装配式木建筑的数量"
-		></el-table-column>
-	</el-table>
-	<el-pagination
-	@current-change="handlePageNumChange"
-	@size-change="handlePageSizeChange"
-    :current-page="pageNum"
-    :page-size="pageSize"
-    :page-sizes="[5,10,15,20]"
-    layout="total, sizes, prev, pager, next, jumper"
-    :total="totalIndustrializationInfoData">
-	</el-pagination>
-	</el-col>
-	<el-dialog v-model="showAddDialog" title="增加">		
-		<el-form :model="addData" :rules="rules" ref="ruleForm">
-			<el-form-item prop="declareTime">
-				<el-col :span="5">
-					填报时间：
-				</el-col>
-				<el-col :span="7">
-					<el-date-picker
-				      v-model="addData.declareTime"
-				      align="right"
-				      type="date"
-				      placeholder="选择日期"
-				      :picker-options="pickerOptions1">
-				    </el-date-picker>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="year">
-				<el-col :span="5">
-					填报年份：
-				</el-col>
-				<el-col :span="7">
-					<el-input
-					type='number'
-					v-model="addData.year"
-					align="right"
-					></el-input>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="quarter">
-				<el-col :span="5">
-					填报季度：
-				</el-col>
-				<el-col :span="7">
-					<el-input
-					type='number'
-					v-model="addData.quarter"
-					align="right"
-					max='4'
-					min='1'
-					></el-input>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="addNewConcrete">
-				<el-col :span="10">
-					新增装配式混凝土结构建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model.number="addData.addNewConcrete" type='number' maxLength='5' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
-				</el-col>	
-			</el-form-item>
-			<el-form-item prop="addNewSteel">
-				<el-col :span="10">
-					新增装配式钢结构建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model.number="addData.addNewSteel" type='number' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
-				</el-col>
-			</el-form-item>			
-			<el-form-item prop="addNewTimber">
-				<el-col :span="10">
-					新增装配式木建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model.number="addData.addNewTimber" type='number' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
-				</el-col>
-			</el-form-item>		
-			<el-button type="primary" @click="submit('tempStore')">暂存</el-button>
-			<el-button type="primary" @click="submit('submit')">提交</el-button>
-		</el-form>
-	</el-dialog>
-	<el-dialog v-model="showUpdateDialog" title="修改">	
-		<el-form :model="updateData" :rules="rules" ref="ruleForm">
-			<el-form-item prop="declareTime">
-				<el-col :span="5">
-					填报时间：
-				</el-col>
-				<el-col :span="7">
-					<el-date-picker
-				      v-model="updateData.declareTime"
-				      align="right"
-				      type="date"
-				      placeholder="选择日期"
-				      :picker-options="pickerOptions1">
-				    </el-date-picker>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="year">
-				<el-col :span="5">
-					填报年份：
-				</el-col>
-				<el-col :span="7">
-					<el-input
-					type='number'
-					v-model="updateData.year"
-					align="right"
-					></el-input>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="quarter">
-				<el-col :span="5">
-					填报季度：
-				</el-col>
-				<el-col :span="7">
-					<el-input
-					type='number'
-					v-model="updateData.quarter"
-					align="right"
-					max='4'
-					min='1'
-					></el-input>
-				</el-col>
-			</el-form-item>
-			<el-form-item prop="addNewConcrete">
-				<el-col :span="10">
-					新增装配式混凝土结构建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model="updateData.addNewConcrete" type='number' maxLength='5' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
-				</el-col>	
-			</el-form-item>
-			<el-form-item prop="addNewSteel">
-				<el-col :span="10">
-					新增装配式钢结构建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model="updateData.addNewSteel" type='number' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
-				</el-col>
-			</el-form-item>			
-			<el-form-item prop="addNewTimber">
-				<el-col :span="10">
-					新增装配式木建筑的数量:
-				</el-col>
-				<el-col :span="14">
-					<el-input v-model="updateData.addNewTimber" type='number' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
-				</el-col>
-			</el-form-item>		
-			<el-button type="primary" @click="cancelUpdate">取消</el-button>
-			<el-button type="primary" @click="confirmUpdate('tempStore')">暂存</el-button>
-			<el-button type="primary" @click="confirmUpdate('submit')">提交</el-button>
-		</el-form>
-	</el-dialog>
-	<msg-dialog ref="msgDialog"></msg-dialog>
-</div>
+  <div id="body">
+    <el-row>
+      <el-button @click="add" id="addBtn">增加</el-button>
+      <el-button @click="remove(selectedRow)">删除</el-button>
+      <el-button @click="update(selectedRow)">修改</el-button>
+    </el-row>
+    <el-col :span="20" push="2">
+      <el-table
+      :data="industrializationInfoData"
+      highlight-current-row
+      border
+      @row-click="handleSelectionChange"
+      style="width: 100%">
+        <el-table-column
+        prop="declareTime"
+        width="100px"
+        align="center"
+        label="填报时间"
+        ></el-table-column>	
+        <el-table-column
+        prop="addNewConcrete"
+        align="center"
+        label="新增装配式混凝土结构建筑的数量"
+        ></el-table-column>
+        <el-table-column
+        prop="addNewSteel"
+        align="center"
+        label="新增装配式钢结构建筑的数量"
+        ></el-table-column>
+        <el-table-column
+        prop="addNewTimber"
+        align="center"
+        label="新增装配式木建筑的数量"
+        ></el-table-column>
+      </el-table>
+      <el-pagination
+      @current-change="handlePageNumChange"
+      @size-change="handlePageSizeChange"
+        :current-page="pageNum"
+        :page-size="pageSize"
+        :page-sizes="[5,10,15,20]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="totalIndustrializationInfoData">
+      </el-pagination>
+    </el-col>
+    <el-dialog v-model="showAddDialog" title="增加" :modal-append-to-body=false>		
+      <el-form :model="addData" :rules="rules" ref="ruleForm">
+        <el-form-item prop="declareTime">
+          <el-col :span="5">
+            填报时间：
+          </el-col>
+          <el-col :span="7">
+            <el-date-picker
+              v-model="addData.declareTime"
+              align="right"
+              type="date"
+              placeholder="选择日期"
+              :picker-options="pickerOptions1">
+            </el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="year">
+          <el-col :span="5">
+            填报年份：
+          </el-col>
+          <el-col :span="7">
+            <el-input
+              type='number'
+              v-model="addData.year"
+              align="right"
+            ></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="quarter">
+          <el-col :span="5">
+            填报季度：
+          </el-col>
+          <el-col :span="7">
+            <el-input
+            type='number'
+            v-model="addData.quarter"
+            align="right"
+            max='4'
+            min='1'
+            ></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="addNewConcrete">
+          <el-col :span="10">
+            新增装配式混凝土结构建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model.number="addData.addNewConcrete" type='number' maxLength='5' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
+          </el-col>	
+        </el-form-item>
+        <el-form-item prop="addNewSteel">
+          <el-col :span="10">
+            新增装配式钢结构建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model.number="addData.addNewSteel" type='number' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
+          </el-col>
+        </el-form-item>			
+        <el-form-item prop="addNewTimber">
+          <el-col :span="10">
+            新增装配式木建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model.number="addData.addNewTimber" type='number' placeholder="请输入内容" min=0><template slot="append">万平方米</template></el-input>
+          </el-col>
+        </el-form-item>		
+        <el-button type="primary" @click="submit('tempStore')">暂存</el-button>
+        <el-button type="primary" @click="submit('submit')">提交</el-button>
+      </el-form>
+    </el-dialog>
+    <el-dialog v-model="showUpdateDialog" title="修改" :modal-append-to-body=false>	
+      <el-form :model="updateData" :rules="rules" ref="ruleForm">
+        <el-form-item prop="declareTime">
+          <el-col :span="5">
+            填报时间：
+          </el-col>
+          <el-col :span="7">
+            <el-date-picker
+                v-model="updateData.declareTime"
+                align="right"
+                type="date"
+                placeholder="选择日期"
+                :picker-options="pickerOptions1">
+              </el-date-picker>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="year">
+          <el-col :span="5">
+            填报年份：
+          </el-col>
+          <el-col :span="7">
+            <el-input
+            type='number'
+            v-model="updateData.year"
+            align="right"
+            ></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="quarter">
+          <el-col :span="5">
+            填报季度：
+          </el-col>
+          <el-col :span="7">
+            <el-input
+            type='number'
+            v-model="updateData.quarter"
+            align="right"
+            max='4'
+            min='1'
+            ></el-input>
+          </el-col>
+        </el-form-item>
+        <el-form-item prop="addNewConcrete">
+          <el-col :span="10">
+            新增装配式混凝土结构建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model="updateData.addNewConcrete" type='number' maxLength='5' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
+          </el-col>	
+        </el-form-item>
+        <el-form-item prop="addNewSteel">
+          <el-col :span="10">
+            新增装配式钢结构建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model="updateData.addNewSteel" type='number' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
+          </el-col>
+        </el-form-item>			
+        <el-form-item prop="addNewTimber">
+          <el-col :span="10">
+            新增装配式木建筑的数量:
+          </el-col>
+          <el-col :span="14">
+            <el-input v-model="updateData.addNewTimber" type='number' placeholder="请输入内容"><template slot="append">万平方米</template></el-input>
+          </el-col>
+        </el-form-item>		
+        <el-button type="primary" @click="cancelUpdate">取消</el-button>
+        <el-button type="primary" @click="confirmUpdate('tempStore')">暂存</el-button>
+        <el-button type="primary" @click="confirmUpdate('submit')">提交</el-button>
+      </el-form>
+    </el-dialog>
+    <msg-dialog ref="msgDialog" modal-append-to-body=false></msg-dialog>
+  </div>
 </template>
 <script type="text/javascript">
 import moment from 'moment'
@@ -195,93 +194,93 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 	export default{
 		data:function(){
 			var validateNumber = (rule, value, callback) => {
-		        if (value==='') {
-		          return callback(new Error('请输入大于等于0的数值'))
-		        }else if (value<0) {
-		        	return callback(new Error('请输入大于等于0的数值'))
-		        } else{
-		        	callback()
-		        } 
-	      	}
-			return{
-				addData:{
-					//新增装配式混凝土结构建筑的数量
-					addNewConcrete:'',
-					//新增装配式钢结构建筑的数量
-	    			addNewSteel:'',
-	    			// 新增装配式木建筑的数量
-	    			addNewTimber:'',
-	    			//是否是提交状态
-	    			submit:'',
-	    			declareTime:'',
-	    			year:'',
-	    			quarter:''
-				},			
-    			//要更新的数据行
-    			updateData:{
-    				id:'',
-    				declareTime:'',
-    				addNewConcrete:'',
-    				addNewSteel:'',
-    				addNewTimber:'',
-    				year:'',
-    				quarter:'',
-    				checkedStatus:'',
-    				submit:''
-    			},
-    			showAddDialog:false,
-    			showUpdateDialog:false,
-				selectedRow:'',
-				selectedRowId:'',
-				//表格数据总条数
-				totalIndustrializationInfoData:'',
-				//表格数据
-				industrializationInfoData:'',
-				//当前行的审核状态id，用于判断是否可以修改.删除
-				checkedStatus:'',
-				//判断是否是提交状态
-				isSubmit:'',
-				pageSize:10,
-				pageNum:1,
-				pickerOptions1: {
-					//限制日期选择器不可选择未来时间
-					disabledDate(time) {
-		            	return time.getTime() > Date.now()+ 24*60*60*1000 - 8.64e7;
-		          	},
-		          	//快捷键
-		         	shortcuts: [{
-		            	text: '今天',
-		            	onClick(picker) {
-		             		picker.$emit('pick', new Date());
-		            	}
-		          	}, {
-		            	text: '昨天',
-		            	onClick(picker) {
-		              		const date = new Date();
-		              		date.setTime(date.getTime() - 3600 * 1000 * 24);
-		              		picker.$emit('pick', date);
-		            	}
-		          	}, {
-		            	text: '一周前',
-		            	onClick(picker) {
-		              		const date = new Date();
-		              		date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
-		              		picker.$emit('pick', date);
-		            	}
-		          	}]
-		        },
-		        rules:{
-		        	//新增装配式混凝土结构建筑的数量
-					addNewConcrete:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
-					//新增装配式钢结构建筑的数量
-	    			addNewSteel:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
-	    			// 新增装配式木建筑的数量
-	    			addNewTimber:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
-	    			declareTime:[{validator:validateNumber,trigger: 'change',message:'请填写填报时间'}],
-	    			year:[{validator:validateNumber,trigger: 'change',message:'请填写填报年份'}],
-	    			quarter:[{validator:validateNumber,trigger: 'change',message:'请填写填报季度'}],
-		        }
-			}
+        if (value==='') {
+          return callback(new Error('请输入大于等于0的数值'))
+        }else if (value<0) {
+          return callback(new Error('请输入大于等于0的数值'))
+        } else{
+          callback()
+        } 
+      }
+      return{
+        addData:{
+          //新增装配式混凝土结构建筑的数量
+          addNewConcrete:'',
+          //新增装配式钢结构建筑的数量
+          addNewSteel:'',
+          // 新增装配式木建筑的数量
+          addNewTimber:'',
+          //是否是提交状态
+          submit:'',
+          declareTime:'',
+          year:'',
+          quarter:''
+        },			
+        //要更新的数据行
+        updateData:{
+          id:'',
+          declareTime:'',
+          addNewConcrete:'',
+          addNewSteel:'',
+          addNewTimber:'',
+          year:'',
+          quarter:'',
+          checkedStatus:'',
+          submit:''
+        },
+        showAddDialog:false,
+        showUpdateDialog:false,
+        selectedRow:'',
+        selectedRowId:'',
+        //表格数据总条数
+        totalIndustrializationInfoData:'',
+        //表格数据
+        industrializationInfoData:'',
+        //当前行的审核状态id，用于判断是否可以修改.删除
+        checkedStatus:'',
+        //判断是否是提交状态
+        isSubmit:'',
+        pageSize:10,
+        pageNum:1,
+        pickerOptions1: {
+          //限制日期选择器不可选择未来时间
+          disabledDate(time) {
+            return time.getTime() > Date.now()+ 24*60*60*1000 - 8.64e7;
+          },
+          //快捷键
+          shortcuts: [{
+            text: '今天',
+            onClick(picker) {
+              picker.$emit('pick', new Date());
+            }
+          }, {
+            text: '昨天',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24);
+              picker.$emit('pick', date);
+            }
+          }, {
+            text: '一周前',
+            onClick(picker) {
+              const date = new Date();
+              date.setTime(date.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', date);
+            }
+          }]
+        },
+        rules:{
+          //新增装配式混凝土结构建筑的数量
+          addNewConcrete:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
+          //新增装配式钢结构建筑的数量
+          addNewSteel:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
+          // 新增装配式木建筑的数量
+          addNewTimber:[{validator:validateNumber,trigger: 'change',message:'请填写大于等于零的数值'}],
+          declareTime:[{validator:validateNumber,trigger: 'change',message:'请填写填报时间'}],
+          year:[{validator:validateNumber,trigger: 'change',message:'请填写填报年份'}],
+          quarter:[{validator:validateNumber,trigger: 'change',message:'请填写填报季度'}],
+        }
+      }
 		},
 		created:function(){
 			var currentDate= new Date()
@@ -290,11 +289,12 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 			this.addData.declareTime=preDate
 			this.addData.year=currentDate.getFullYear()
 			this.addData.quarter=Math.floor( ( currMonth % 3 == 0 ? ( currMonth / 3 ) : ( currMonth / 3 + 1 ) ) )
-			this.getAllIndustrializationInfo()			
+			this.getAllIndustrializationInfo()
 		},
 		methods:{
 			getAllIndustrializationInfo:function(){
-				var url=this.HOST+'/getAllConstructionEnIndustrializations?page='+this.pageNum+'&rows='+this.pageSize
+        var url=this.HOST+'/displayAllConstructionEnIndustrializations?page='+this.pageNum+'&rows='+this.pageSize
+				// var url=this.HOST+'/getAllConstructionEnIndustrializations?page='+this.pageNum+'&rows='+this.pageSize
 				this.$http.get(url).then(response=>{
 					this.industrializationInfoData=response.data.rows
 					this.totalIndustrializationInfoData=response.data.total
@@ -321,6 +321,7 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 			},
 			//暂存和提交
 			submit:function(val){
+        // debugger
 				if (val=='tempStore') {
 					this.addData.submit=false
 				}else{
@@ -344,10 +345,9 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 						})			
 					}else{
 						this.$refs.msgDialog.confirm("请检查增加信息,请正确填写")
-		            	return false;
+		        return false
 					}
-				})
-								
+				})						
 			},
 			update:function(val){
 				if (val) {
@@ -399,7 +399,7 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 						})		
 					}else{
 						this.$refs.msgDialog.confirm("请检查增加信息,请正确填写")
-		            	return false;
+		        return false
 					}
 				})
 				
@@ -420,36 +420,36 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 						}else{
 							var url=this.HOST+'/deleteConstructionEnIndustrialization?id='+this.selectedRowId
 							this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-					          confirmButtonText: '确定',
-					          cancelButtonText: '取消',
-					          type: 'warning'
-					        }).then(()=>{
-					        	this.$http.delete(url).then(response=>{
-									this.$refs.msgDialog.notify("成功删除驳回数据！")
-									this.getAllIndustrializationInfo()
-								}).catch(response=>{
-									this.$refs.msgDialog.notify("删除驳回数据失败！")
-								})
-					        }).catch(()=>{
-					        	this.$refs.msgDialog.notify("已取消删除驳回数据！")
-					        })					
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(()=>{
+                this.$http.delete(url).then(response=>{
+                this.$refs.msgDialog.notify("成功删除驳回数据！")
+                this.getAllIndustrializationInfo()
+                }).catch(response=>{
+                  this.$refs.msgDialog.notify("删除驳回数据失败！")
+                })
+              }).catch(()=>{
+                this.$refs.msgDialog.notify("已取消删除驳回数据！")
+              })					
 						}							
 					}else{
 						var url=this.HOST+'/deleteConstructionEnIndustrialization?id='+this.selectedRowId
 							this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
-					          confirmButtonText: '确定',
-					          cancelButtonText: '取消',
-					          type: 'warning'
-					        }).then(()=>{
-					        	this.$http.delete(url).then(response=>{
-									this.$refs.msgDialog.notify("成功删除暂存数据！")
-									this.getAllIndustrializationInfo()
-								}).catch(response=>{
-									this.$refs.msgDialog.notify("删除暂存数据失败！")
-								})
-					        }).catch(()=>{
-					        	this.$refs.msgDialog.notify("已取消删除暂存数据！")
-					        })				
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(()=>{
+                  this.$http.delete(url).then(response=>{
+                  this.$refs.msgDialog.notify("成功删除暂存数据！")
+                  this.getAllIndustrializationInfo()
+                  }).catch(response=>{
+                    this.$refs.msgDialog.notify("删除暂存数据失败！")
+                  })
+                }).catch(()=>{
+                  this.$refs.msgDialog.notify("已取消删除暂存数据！")
+                })				
 					}
 				}else{
 					this.$refs.msgDialog.confirm("请选择要删除的一行数据！")
@@ -462,15 +462,17 @@ import msgDialog from '../../../components/common/msgDialog.vue'
 	}
 </script>
 <style type="text/css">
-	#body{
-		width: 100%;
-		height: 100%
-	}
-	#header{
-		width: 100%;
-		height: 10%;
-		float: left;
-	}
-	
+#body{
+  width: 100%;
+  height: 100%;
+}
+#header{
+  width: 100%;
+  height: 10%;
+  float: left;
+}
+.el-dialog--small {
+  width: 50%;
+}
 </style>
 	

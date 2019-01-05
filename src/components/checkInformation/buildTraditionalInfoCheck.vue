@@ -108,9 +108,10 @@
 	    </el-pagination>
 	  	<msg-dialog ref="traditionalCheckMsg"></msg-dialog>
 	  	<!-- 对话框，用来修改审核状态 -->
-	  	<el-dialog
+	  <el-dialog
 		  	title="选择审核状态"
 		  	:visible.sync="checkedStatusDialogVisible"
+        :modal-append-to-body='false'
 		  	size="tiny">
 		  	<el-select v-model="checkedStatusId" placeholder="请选择">
 			    <el-option

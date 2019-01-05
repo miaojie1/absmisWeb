@@ -12,122 +12,114 @@
 			</el-col>
 		</el-row>
 		<el-table
-		    :data="traditionalCheckTableData"
-		    border
-		    stripe
-		    tooltip-effect="dark"
-		    style="width:100%"
-		    highlight-current-row
-		    @selection-change="handleSelectionChange">
-		    <el-table-column
-		      type="selection"
-		      width="55"
-		      align="center">
-		    </el-table-column>
-		    <el-table-column
-		      label="企业名称"
-		      prop="name"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="类型"
-		      width="150"
-		      prop="enterpriseType"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="统一社会信用代码"
-		      prop="creditCode"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="组织机构代码"
-		      width="150"
-		      prop="organizationCode"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="所在市县"
-		      prop="city"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="法定代表人"
-		      width="150"
-		      prop="legalRepresentative"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="资质证书编号"
-		      width="150"
-		      prop="qualificationNo"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="资质等级"
-		      width="150"
-		      prop="realEstateEnQualification.description"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="审核状态"
-		      width="150"
-		      prop="checkedStatus.state"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-	  	</el-table>
-	  	<!-- 分页 -->
-	  	<el-pagination
-	      @size-change="handleSizeChange"
-	      @current-change="handleCurrentChange"
-	      :current-page="currentPage"
-	      :page-sizes="[5, 10, 15, 20]"
-	      :page-size="pageSize"
-	      layout="total, sizes, prev, pager, next, jumper"
-	      :total="total">
-	    </el-pagination>
-	  	<msg-dialog ref="traditionalCheckMsg"></msg-dialog>
-	  	<!-- 对话框，用来修改审核状态 -->
-	  	<el-dialog
-		  	title="选择审核状态"
-		  	:visible.sync="checkedStatusDialogVisible"
-		  	size="tiny">
-		  	<el-select v-model="checkedStatusId" placeholder="请选择">
-			    <el-option
-			      v-for="item in checkedStatus"
-			      :key="item.id"
-			      :label="item.state"
-			      :value="item.id">
-			    </el-option>
-			 </el-select>
-		  	<span slot="footer" class="dialog-footer">
-		    <el-button @click="checkedStatusDialogVisible = false">取 消</el-button>
-		    <el-button type="primary" @click="checkedStatusUpdate">确 定</el-button>
-		  </span>
-		</el-dialog>
+      :data="traditionalCheckTableData"
+      border
+      stripe
+      tooltip-effect="dark"
+      style="width:100%"
+      highlight-current-row
+      @selection-change="handleSelectionChange">
+      <el-table-column
+        type="selection"
+        width="55"
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="企业名称"
+        prop="name"
+        width="150"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="类型"
+        width="150"
+        prop="enterpriseType"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="统一社会信用代码"
+        prop="creditCode"
+        width="150"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="组织机构代码"
+        width="150"
+        prop="organizationCode"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="所在市县"
+        prop="city"
+        width="150"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="法定代表人"
+        width="150"
+        prop="legalRepresentative"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="资质证书编号"
+        width="150"
+        prop="qualificationNo"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="资质等级"
+        width="150"
+        prop="realEstateEnQualification.description"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+      <el-table-column
+        label="审核状态"
+        width="150"
+        prop="checkedStatus.state"
+        show-overflow-tooltip
+        align="center">
+      </el-table-column>
+	  </el-table>
+    <!-- 分页 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+    <msg-dialog ref="traditionalCheckMsg"></msg-dialog>
+    <!-- 对话框，用来修改审核状态 -->
+    <el-dialog
+      title="选择审核状态"
+      :visible.sync="checkedStatusDialogVisible"
+      :modal-append-to-body='false'
+      size="tiny">
+      <el-select v-model="checkedStatusId" placeholder="请选择">
+        <el-option
+          v-for="item in checkedStatus"
+          :key="item.id"
+          :label="item.state"
+          :value="item.id">
+        </el-option>
+      </el-select>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="checkedStatusDialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="checkedStatusUpdate">确 定</el-button>
+      </span>
+    </el-dialog>
 	</div>
 </template>
-
 <script>
 import msgDialog from '../common/msgDialog'
 	export default{

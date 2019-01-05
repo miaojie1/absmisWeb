@@ -12,109 +12,94 @@
 			</el-col>
 		</el-row>
 		<el-row>
-		<el-col :span="24">
-		<el-table
-		    :data="nonTraditionalCheckTableData"
-		    border
-		    stripe
-		    tooltip-effect="dark"
-		    style="width:100%"
- 			@selection-change="handleSelectionChange">
-		    <el-table-column
-		      type="selection"
-		      width="55"
-		      align="center">
-		    </el-table-column>
-		    <el-table-column
-		      label="企业名称"
-		      prop="name"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="类型"
-		      width="150"
-		      prop="enterpriseType"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="统一社会信用代码"
-		      prop="creditCode"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="组织机构代码"
-		      width="150"
-		      prop="organizationCode"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="所在市县"
-		      prop="city"
-		      width="150"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      label="法定代表人"
-		      width="140"
-		      prop="legalRepresentative"
-		      show-overflow-tooltip
-		      align="center">
-		    </el-table-column>
-
-		    <el-table-column
-		      width="140"
-		      prop="checkedStatus.state"
-		      label="审核状态"
-		      align="center">
-		    </el-table-column>
-	  	</el-table>
-	  	<!-- 分页 -->
-	  	<el-pagination
-	      @size-change="handleSizeChange"
-	      @current-change="handleCurrentChange"
-	      :current-page="currentPage"
-	      :page-sizes="[5, 10, 15, 20]"
-	      :page-size="pageSize"
-	      layout="total, sizes, prev, pager, next, jumper"
-	      :total="total">
-	    </el-pagination>
-	    </el-col>
-	    </el-row>
-	    <!-- 调用组件，使用其信息提示框，无实际显示意义 -->
-	  	<msg-dialog ref="nonTraditionalCheckMsg"></msg-dialog>
-	  	<!-- 对话框，用来修改审核状态 -->
-	  	<el-dialog
-		  	title="选择审核状态"
-		  	:visible.sync="checkStatusDialogVisable"
-		  	size="tiny">
-		  	<el-select v-model="checkStatusId" placeholder="请选择">
-			    <el-option
-			      v-for="item in checkStatus"
-			      :key="item.id"
-			      :label="item.state"
-			      :value="item.id">
-			    </el-option>
-			 </el-select>
-		  	<span slot="footer" class="dialog-footer">
+      <el-col :span="24">
+        <el-table
+          :data="nonTraditionalCheckTableData"
+          border
+          stripe
+          tooltip-effect="dark"
+          @selection-change="handleSelectionChange">
+          <el-table-column
+            type="selection"
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="企业名称"
+            prop="name"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="类型"
+            prop="enterpriseType"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="统一社会信用代码"
+            prop="creditCode"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="组织机构代码"
+            prop="organizationCode"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="所在市县"
+            prop="city"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            label="法定代表人"
+            prop="legalRepresentative"
+            show-overflow-tooltip
+            align="center">
+          </el-table-column>
+          <el-table-column
+            prop="checkedStatus.state"
+            label="审核状态"
+            align="center">
+          </el-table-column>
+        </el-table>
+        <!-- 分页 -->
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="currentPage"
+          :page-sizes="[5, 10, 15, 20]"
+          :page-size="pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="total">
+        </el-pagination>
+      </el-col>
+	  </el-row>
+	  <!-- 调用组件，使用其信息提示框，无实际显示意义 -->
+	  <msg-dialog ref="nonTraditionalCheckMsg"></msg-dialog>
+	  <!-- 对话框，用来修改审核状态 -->
+	  <el-dialog
+      title="选择审核状态"
+      :visible.sync="checkStatusDialogVisable"
+      :modal-append-to-body='false'
+      size="tiny">
+      <el-select v-model="checkStatusId" placeholder="请选择">
+        <el-option
+          v-for="item in checkStatus"
+          :key="item.id"
+          :label="item.state"
+          :value="item.id">
+        </el-option>
+      </el-select>
+		  <span slot="footer" class="dialog-footer">
 		    <el-button @click="checkStatusDialogVisable = false">取 消</el-button>
 		    <el-button type="primary" @click="checkStatusUpdate">提 交</el-button>
 		  </span>
 		</el-dialog>
 	</div>
 </template>
-
 <script>
 import msgDialog from '../common/msgDialog'
 	export default{
@@ -141,8 +126,6 @@ import msgDialog from '../common/msgDialog'
 				searchContent:'',
 				//刷新查询后的表格页面使用
 				searchContentFinal:''
-
-
 			}
 		},
 		//加载页面时触发
@@ -232,8 +215,7 @@ import msgDialog from '../common/msgDialog'
 						})
 					}else{
 						this.findNonTraditionalInfo()
-					}
-					
+					}					
 					this.$refs.nonTraditionalCheckMsg.notify("审核成功")
 				}).catch(error=>{
 					this.$refs.nonTraditionalCheckMsg.confirm("审核失败！")

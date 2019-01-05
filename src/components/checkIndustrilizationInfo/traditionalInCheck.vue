@@ -9,11 +9,8 @@
 					  icon="search"
 					  v-model="selectedCompanyName"
 					  :on-icon-click="searchTraditionalInfo">
-					</el-input>	
+					</el-input>
 					</el-col>
-					
-					
-					
 					<el-col :span="8">
 					填报时间：
 					<el-date-picker
@@ -28,62 +25,54 @@
 				</el-row>
 				<el-row>
 					<el-table
-					:data="traditionalInfoData"
-					highlight-current-row
-					border
-					@selection-change="handleRowChange">
-					<el-table-column
-					type="selection"
-					width="65"
-					align="center"
-					></el-table-column>
-					<el-table-column
-					label="企业名称"
-					prop="constructionEn.name"
-					width="180px"
-					align="center"
-					>				
-					</el-table-column>
-					<el-table-column
-					label="填报时间"
-					prop="declareTime"
-					width="177px"
-					align="center">
-					</el-table-column>	
-					<el-table-column
-					label="混凝土数量"
-					prop="addNewConcrete"
-					width="170px"
-					align="center"
-					></el-table-column>
-					<el-table-column
-					prop="addNewSteel"
-					label="负责结构数量"
-					width="170px"
-					align="center"
-					></el-table-column>
-					<el-table-column
-					prop="addNewTimber"
-					label="木结构数量"
-					width="170px"
-					align="center"
-					></el-table-column>
-					<el-table-column
-					prop="checkedStatus.state"
-					label="审核状态"	
-					width="160px"
-					align="center"
-					></el-table-column>			
-				</el-table>
-				<el-pagination
-					@current-change="handlePageNumChange"
-					@size-change="handlePageSizeChange"
-					:page-sizes="[5,10,15,20]"
-				    :current-page="pageNum"
-				    :page-size="pageSize"
-				    layout="total, sizes, prev, pager, next, jumper"
-				    :total="total">
-				</el-pagination>
+            :data="traditionalInfoData"
+            highlight-current-row
+            border
+            @selection-change="handleRowChange">
+            <el-table-column
+            type="selection"
+            align="center"
+            ></el-table-column>
+            <el-table-column
+            label="企业名称"
+            prop="constructionEn.name"
+            align="center">				
+            </el-table-column>
+            <el-table-column
+            label="填报时间"
+            prop="declareTime"
+            align="center">
+            </el-table-column>	
+            <el-table-column
+            label="混凝土数量"
+            prop="addNewConcrete"
+            align="center"
+            ></el-table-column>
+            <el-table-column
+            prop="addNewSteel"
+            label="负责结构数量"
+            align="center"
+            ></el-table-column>
+            <el-table-column
+            prop="addNewTimber"
+            label="木结构数量"
+            align="center"
+            ></el-table-column>
+            <el-table-column
+            prop="checkedStatus.state"
+            label="审核状态"	
+            align="center"
+            ></el-table-column>			
+				  </el-table>
+          <el-pagination
+            @current-change="handlePageNumChange"
+            @size-change="handlePageSizeChange"
+            :page-sizes="[5,10,15,20]"
+              :current-page="pageNum"
+              :page-size="pageSize"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="total">
+          </el-pagination>
 				</el-row>
 			</el-col>
 		</el-row>
@@ -121,7 +110,6 @@ import msgDialog from '../common/msgDialog.vue'
 				})
 			},
 			handleRowChange:function(val){
-				alert("@@@@@@@"+JSON.stringify(val))
 				if(val[1]){
 					this.$refs.msgDialog.confirm("只能选择一行进行审核！")
 				}else{

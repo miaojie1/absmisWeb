@@ -10,7 +10,7 @@
 				  	icon="search"
 				  	v-model="selectedCompanyName"
 				  	:on-icon-click="searchComponentCompanyInfo"
-				></el-input>			
+				></el-input>
 			</el-col>
 			<el-col :span="2">
 				<el-button @click="searchComponentCompany">查询</el-button>

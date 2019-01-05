@@ -2,8 +2,8 @@
 <div id="navBar">
     <el-menu default-active="1-4-1" class="el-menu-vertical-demo" theme="light" :router=true>
     <template slot="title"></template> 
-    <div v-for="item in menuData">
-    <el-menu-item :index="item.url" style="text-align: left;" class="menuItem"><i :class="item.icon"></i>{{item.text}}</el-menu-item>
+    <div v-for="(item,index) in menuData" :key="index">
+      <el-menu-item :index="item.url" style="text-align: left;" class="menuItem"><i :class="item.icon"></i>{{item.text}}</el-menu-item>
     </div>
     </el-menu>
 </div>
@@ -30,17 +30,16 @@ export default {
     },
     //TODO include a update property here for update the menu when the data was updated
     data: function() {
-        return {
-            //menu data for showing in the nav bar
-            //TODO should be linked to the navBar content after the update methods was built
-            naiveMenu: '',
-            menuData:[],
-            secondClassMenu: [],
-            thirdClassMenu:[],
-
-            //determine the menu type
-            menuController: false
-        }
+      return {
+        //menu data for showing in the nav bar
+        //TODO should be linked to the navBar content after the update methods was built
+        naiveMenu: '',
+        menuData:[],
+        secondClassMenu: [],
+        thirdClassMenu:[],
+        //determine the menu type
+        menuController: false
+      }
     },
 }
 </script>

@@ -27,8 +27,7 @@
 					max="4"
 					min="1"
 					v-model="selectedQuarterForConstructionEn"
-			 	></el-input>		 	
-			 	
+			 	></el-input>
 			</el-col>
 			<el-col :span="1">季度</el-col>
 			<el-col :span="3">

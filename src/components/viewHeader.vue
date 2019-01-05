@@ -8,10 +8,8 @@
 		    </el-breadcrumb>
 	    </el-col>
     </el-row>
-
 </div>
 </template>
-
 <script>
 export default {
 }

@@ -9,9 +9,6 @@ import axios from 'axios'
 import VeeValidate from 'vee-validate'
 import moment from 'moment'
 
-
-
-
 axios.defaults.withCredentials=true
 
 Vue.prototype.$http = axios

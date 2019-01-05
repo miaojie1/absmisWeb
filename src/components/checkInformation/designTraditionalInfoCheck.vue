@@ -94,31 +94,32 @@
 		      show-overflow-tooltip
 		      align="center">
 		    </el-table-column>
-	  	</el-table>
-	  	<!-- 分页 -->
-	  	<el-pagination
-	      @size-change="handleSizeChange"
-	      @current-change="handleCurrentChange"
-	      :current-page="currentPage"
-	      :page-sizes="[5, 10, 15, 20]"
-	      :page-size="pageSize"
-	      layout="total, sizes, prev, pager, next, jumper"
-	      :total="total">
-	    </el-pagination>
-	  	<msg-dialog ref="traditionalCheckMsg"></msg-dialog>
-	  	<!-- 对话框，用来修改审核状态 -->
-	  	<el-dialog
-		  	title="选择审核状态"
-		  	:visible.sync="checkedStatusDialogVisible"
-		  	size="tiny">
-		  	<el-select v-model="checkedStatusId" placeholder="请选择">
-			    <el-option
-			      v-for="item in checkedStatus"
-			      :key="item.id"
-			      :label="item.state"
-			      :value="item.id">
-			    </el-option>
-			 </el-select>
+	  </el-table>
+    <!-- 分页 -->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="currentPage"
+      :page-sizes="[5, 10, 15, 20]"
+      :page-size="pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
+    <msg-dialog ref="traditionalCheckMsg"></msg-dialog>
+    <!-- 对话框，用来修改审核状态 -->
+    <el-dialog
+      title="选择审核状态"
+      :visible.sync="checkedStatusDialogVisible"
+      :modal-append-to-body='false'
+      size="tiny">
+      <el-select v-model="checkedStatusId" placeholder="请选择">
+        <el-option
+          v-for="item in checkedStatus"
+          :key="item.id"
+          :label="item.state"
+          :value="item.id">
+        </el-option>
+      </el-select>
 		  	<span slot="footer" class="dialog-footer">
 		    <el-button @click="checkedStatusDialogVisible = false">取 消</el-button>
 		    <el-button type="primary" @click="checkedStatusUpdate">确 定</el-button>
@@ -126,7 +127,6 @@
 		</el-dialog>
 	</div>
 </template>
-
 <script>
 import msgDialog from '../common/msgDialog'
 	export default{
@@ -152,7 +152,6 @@ import msgDialog from '../common/msgDialog'
 				searchContent:'',
 				//刷新查询后的表格页面使用
 				searchContentFinal:''
-
 			}
 		},
 		//加载页面时执行

@@ -9,12 +9,12 @@
 		<el-row>
 			<el-col :span="4">	
 				<el-input
-				    v-model="selectedYearByConstructionEn"
-				    align="right"
-				    size="small"
-				    type="number"
-				    min="1"
-				    placeholder="选择年">
+          v-model="selectedYearByConstructionEn"
+          align="right"
+          size="small"
+          type="number"
+          min="1"
+          placeholder="选择年">
 			 	</el-input>
 			</el-col>
 			<el-col :span="1">年</el-col>		 	
@@ -27,8 +27,7 @@
 					max="4"
 					min="1"
 					v-model="selectedQuarterByConstructionEn"
-			 	></el-input>		 	
-			 	
+			 	></el-input>
 			</el-col>
 			<el-col :span="1">季度</el-col>
 			<el-col :span="3">
@@ -48,20 +47,17 @@
 				<el-table-column
 				prop="enNum"
 				label="当前从事装配式建筑企业数量"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="totalScale"
 				label="从事装配式建筑规模累计量"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="annualScale"
 				label="本年度从事装配式建筑的规模"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 			</el-table>
 		</el-row>
@@ -69,12 +65,12 @@
 		<el-row>
 			<el-col :span="4">	
 				<el-input
-				    v-model="selectedYearByComponentEn"
-				    align="right"
-				    size="small"
-				    type="number"
-				    min="1"
-				    placeholder="选择年">
+          v-model="selectedYearByComponentEn"
+          align="right"
+          size="small"
+          type="number"
+          min="1"
+          placeholder="选择年">
 			 	</el-input>
 			</el-col>
 			<el-col :span="1">年</el-col>		 	
@@ -87,8 +83,7 @@
 					max="4"
 					min="1"
 					v-model="selectedQuarterByComponentEn"
-			 	></el-input>		 	
-			 	
+			 	></el-input>
 			</el-col>
 			<el-col :span="1">季度</el-col>
 			<el-col :span="3">
@@ -104,8 +99,7 @@
 				label="装配式建筑构件生产情况"
 				prop="description"
 				header-align="center"
-				width="300"
-				>
+				width="300">
 				</el-table-column>
 				<el-table-column
 				prop="enNum"
@@ -115,20 +109,17 @@
 				<el-table-column
 				prop="productionLine"
 				label="生产线（条）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="ability"
 				label="生产能力（万平方米/万吨）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="appliance"
 				label="应用（万平方米）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 			</el-table>
 		</el-row>
@@ -136,12 +127,12 @@
 		<el-row>
 			<el-col :span="4">	
 				<el-input
-				    v-model="selectedYearBySubUnitEn"
-				    align="right"
-				    size="small"
-				    type="number"
-				    min="1"
-				    placeholder="选择年">
+          v-model="selectedYearBySubUnitEn"
+          align="right"
+          size="small"
+          type="number"
+          min="1"
+          placeholder="选择年">
 			 	</el-input>
 			</el-col>
 			<el-col :span="1">年</el-col>		 	
@@ -154,8 +145,7 @@
 					max="4"
 					min="1"
 					v-model="selectedQuarterBySubUnitEn"
-			 	></el-input>		 	
-			 	
+			 	></el-input>
 			</el-col>
 			<el-col :span="1">季度</el-col>
 			<el-col :span="3">
@@ -171,8 +161,7 @@
 				label="装配式建筑部品生产情况"
 				prop="description"
 				header-align="center"
-				width="300"
-				>
+				width="300">
 				</el-table-column>
 				<el-table-column
 				prop="enNum"
@@ -182,20 +171,17 @@
 				<el-table-column
 				prop="productionLine"
 				label="生产线（条）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="ability"
 				label="生产能力（万平方米/万吨）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 				<el-table-column
 				prop="appliance"
 				label="应用（万平方米）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 			</el-table>
 		</el-row>
@@ -221,8 +207,7 @@
 					max="4"
 					min="1"
 					v-model="selectedQuarterByMachineryEn"
-			 	></el-input>		 	
-			 	
+			 	></el-input>
 			</el-col>
 			<el-col :span="1">季度</el-col>
 			<el-col :span="3">
@@ -238,8 +223,7 @@
 				label="装配式建筑专用施工设备机具生产情况"
 				prop="description"
 				header-align="center"
-				width="300"
-				>
+				width="300">
 				</el-table-column>
 				<el-table-column
 				prop="enNum"
@@ -249,8 +233,7 @@
 				<el-table-column
 				prop="ability"
 				label="生产能力（台套/年）"
-				header-align="center"
-				>
+				header-align="center">
 				</el-table-column>
 			</el-table>
 		</el-row>

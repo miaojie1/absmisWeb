@@ -82,7 +82,7 @@
 			<el-row>
 				<el-col :span="6">钢结构构件"</el-col>
 				<el-col :span="6"><el-input v-model="this.selectedRow.prebuiltSteelNum" disabled></el-input></el-col>
-				<el-col :span="6"><el-input v-model="this.selectedRow.prebuiltSteelAbility"disabled><template slot="append">万平方米</template></el-input></el-col>
+				<el-col :span="6"><el-input v-model="this.selectedRow.prebuiltSteelAbility" disabled><template slot="append">万平方米</template></el-input></el-col>
 				<el-col :span="6"><el-input v-model="this.selectedRow.prebuiltSteelScale" disabled><template slot="append">万平方米</template></el-input></el-col>	
 			</el-row>
 			<el-row>
@@ -172,10 +172,8 @@ import msgDialog from '../common/msgDialog.vue'
 						this.$refs.msgDialog.notify("驳回失败！")
 					})
 				}else{
-
 					this.$refs.msgDialog.confirm("请选择要审核的企业产业化信息")				
-				}
-				
+				}		
 			},
 			passCheck:function(val){
 				// /checkComponentEnIndustrialization
@@ -190,8 +188,7 @@ import msgDialog from '../common/msgDialog.vue'
 					})
 				}else{
 					this.$refs.msgDialog.confirm("请选择要审核的企业产业化信息！")
-				}
-				
+				}	
 			}
 		},
 		components:{
