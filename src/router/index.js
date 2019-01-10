@@ -54,170 +54,182 @@ Vue.use(Router)
 
 export default new Router({
     routes: [
-    {
-        path: '/homePage',
-        name: '首页',
-        component: homePage
-    },
-    {
-        path: '/accountMaintain',
-        name: '企业账号维护',
-        component: accountMaintain
-    },
-    {
-        path: '/changePasswd',
-        name: '用户修改密码',
-        component: changePasswd
-    },
-    {
-        path: '/designerInfo',
-        name: '设计单位-基本信息',
-        component: designCompanyBasicInfo 
-    },
-    {
-        path: '/realEstateEnInfo',
-        name: '房地产企业-基本信息',
-        component: estateCompanyBasicInfo
-    },
-    {
-        path: '/builderInfo',
-        name: '施工单位-基本信息',
-        component: buildCompanyBasicInfo
-    },
-    {
-        path: '/componentEnInfo',
-        name: '构件生产企业-基本信息',
-        component: componentCompanyBasicInfo
-    },
-    {
-        path: '/subUnitEnInfo',
-        name: '部品生产企业-基本信息',
-        component: subUnitEnBasicInfo
-    },
-    {
-        path: '/machineryEnInfo',
-        name: '设备生产企业-基本信息',
-        component: machineryEnBasicInfo
-    },
-    {
-        path: '/estateOwnerInfo',
-        name: '建设单位-基本信息',
-        component: estateOwnerBasicInfo
-    },
-    {
-        path: '/traditionalInfoCheck',
-        name: '建设类企业基本信息审核',
-        component: traditionalInfoCheck
-    },
-    {
-        path: '/nonTraditionalInfoCheck',
-        name: '非建设类企业基本信息审核',
-        component: nonTraditionalInfoCheck
-    },
-    {
-        path: '/realEstateEnIn',
-        name: '房地产-产业化信息',
-        component: realEstateEnIndustrialization
-    },
-    {
-        path: '/designerIn',
-        name: '设计单位-建筑产业化信息',
-        component: designerIndustrialization
-    },
-    {
-        path: '/builderIn',
-        name: '施工单位-建筑产业化信息',
-        component: builderIndustrialization
-    },
-    {
-        path: '/componentEnIn',
-        name: '构件企业-建筑产业化信息',
-        component: componentEnIndustrialization
-    },
-    {
-        path:'/machineryEnIn',
-        name:'设备企业-建筑产业化信息',
-        component:machineryEnIndustrialization
-    },
-    {
-        path: '/subUnitEnIn',
-        name: '部品企业-建筑产业化信息',
-        component: subUnitEnIndustrialization
-    },
-    {
-        path: '/traditionalInCheck',
-        name: '建设类企业产业化信息审核',
-        component: traditionalInCheck
-    },
-    {
-        path: '/componentEnInCheck',
-        name: '构件企业产业化信息审核',
-        component: componentEnInCheck
-    },
-    {
-        path: '/subUnitEnInCheck',
-        name: '部品企业产业化信息审核',
-        component: auditSubUnitEnIndustrialization
-    },
-    {
-        path: '/machineryEnInCheck',
-        name: '设备企业产业化信息审核',
-        component: auditMachineryEnIndustrialization
-    },
-    {
-        path: '/realEstateEnProject',
-        name: '装配式建筑项目信息',
-        component: projectByRealEstateEn
-    },
-    {
-        path: '/estateOwnerProject',
-        name: '建设单位-项目信息',
-        component: projectByEstateOwner
-    },
-    {
-        path: '/projectCheck',
-        name: '项目信息审核',
-        component: projectCheck
-    },
-    {
-        path: '/constructionEnInQuery',
-        name: '传统企业信息查询',
-        component: constructionEnInQuery
-    },
-    {
-        path: '/componentEnInQuery',
-        name: '构件企业信息查询',
-        component: componentEnInQuery
-    },
-    {
-        path: '/subUnitEnInQuery',
-        name: '部品企业信息查询',
-        component: querySubUnitEn
-    },
-    {
-        path: '/machineryEnInQuery',
-        name: '设备企业信息查询',
-        component: queryMachineryEn
-    },
-    {
-        path: '/projectQuery',
-        name: '项目信息查询',
-        component: queryProject
-    },
-    {
-        path: '/query1',
-        name: '统计行业信息1',
-        component: queryEnterpriseInfo
-    },
-    {
-        path: '/query2',
-        name: '统计行业信息2',
-        component: queryIndustrilization
-    },
-    {
-        path: '/query3',
-        name: '统计行业信息3',
-        component: staticIndustryInfoThird
-    }
+      {
+        path: '/',
+        name: '登录页',
+        component: ()=> import('@/components/login')
+      },
+      {
+        path: '/index',
+        name: '主页',
+        component: () => import('@/components/index'),
+        children: [
+          {
+            path: '/designerInfo',
+            name: '设计单位-基本信息',
+            component: designCompanyBasicInfo 
+          },
+          {
+            path: '/homePage',
+            name: '首页',
+            component: homePage
+          },
+          {
+              path: '/accountMaintain',
+              name: '企业账号维护',
+              component: accountMaintain
+          },
+          {
+              path: '/changePasswd',
+              name: '用户修改密码',
+              component: changePasswd
+          },
+          {
+            path: '/realEstateEnInfo',
+            name: '房地产企业-基本信息',
+            component: estateCompanyBasicInfo
+          },
+          {
+            path: '/builderInfo',
+            name: '施工单位-基本信息',
+            component: buildCompanyBasicInfo
+          },
+          {
+            path: '/componentEnInfo',
+            name: '构件生产企业-基本信息',
+            component: componentCompanyBasicInfo
+          },
+          {
+            path: '/subUnitEnInfo',
+            name: '部品生产企业-基本信息',
+            component: subUnitEnBasicInfo
+          },
+          {
+            path: '/machineryEnInfo',
+            name: '设备生产企业-基本信息',
+            component: machineryEnBasicInfo
+          },
+          {
+            path: '/estateOwnerInfo',
+            name: '建设单位-基本信息',
+            component: estateOwnerBasicInfo
+          },
+          {
+            path: '/traditionalInfoCheck',
+            name: '建设类企业基本信息审核',
+            component: traditionalInfoCheck
+          },
+          {
+            path: '/nonTraditionalInfoCheck',
+            name: '非建设类企业基本信息审核',
+            component: nonTraditionalInfoCheck
+          },
+          {
+            path: '/realEstateEnIn',
+            name: '房地产-产业化信息',
+            component: realEstateEnIndustrialization
+          },
+          {
+            path: '/designerIn',
+            name: '设计单位-建筑产业化信息',
+            component: designerIndustrialization
+          },
+          {
+            path: '/builderIn',
+            name: '施工单位-建筑产业化信息',
+            component: builderIndustrialization
+          },
+          {
+            path: '/componentEnIn',
+            name: '构件企业-建筑产业化信息',
+            component: componentEnIndustrialization
+          },
+          {
+            path:'/machineryEnIn',
+            name:'设备企业-建筑产业化信息',
+            component:machineryEnIndustrialization
+          },
+          {
+            path: '/subUnitEnIn',
+            name: '部品企业-建筑产业化信息',
+            component: subUnitEnIndustrialization
+          },
+          {
+            path: '/traditionalInCheck',
+            name: '建设类企业产业化信息审核',
+            component: traditionalInCheck
+          },
+          {
+            path: '/componentEnInCheck',
+            name: '构件企业产业化信息审核',
+            component: componentEnInCheck
+          },
+          {
+            path: '/subUnitEnInCheck',
+            name: '部品企业产业化信息审核',
+            component: auditSubUnitEnIndustrialization
+          },
+          {
+            path: '/machineryEnInCheck',
+            name: '设备企业产业化信息审核',
+            component: auditMachineryEnIndustrialization
+          },
+          {
+            path: '/realEstateEnProject',
+            name: '装配式建筑项目信息',
+            component: projectByRealEstateEn
+          },
+          {
+            path: '/estateOwnerProject',
+            name: '建设单位-项目信息',
+            component: projectByEstateOwner
+          },
+          {
+            path: '/projectCheck',
+            name: '项目信息审核',
+            component: projectCheck
+          },
+          {
+            path: '/constructionEnInQuery',
+            name: '传统企业信息查询',
+            component: constructionEnInQuery
+          },
+          {
+            path: '/componentEnInQuery',
+            name: '构件企业信息查询',
+            component: componentEnInQuery
+          },
+          {
+            path: '/subUnitEnInQuery',
+            name: '部品企业信息查询',
+            component: querySubUnitEn
+          },
+          {
+            path: '/machineryEnInQuery',
+            name: '设备企业信息查询',
+            component: queryMachineryEn
+          },
+          {
+            path: '/projectQuery',
+            name: '项目信息查询',
+            component: queryProject
+          },
+          {
+            path: '/query1',
+            name: '统计行业信息1',
+            component: queryEnterpriseInfo
+          },
+          {
+            path: '/query2',
+            name: '统计行业信息2',
+            component: queryIndustrilization
+          },
+          {
+            path: '/query3',
+            name: '统计行业信息3',
+            component: staticIndustryInfoThird
+          }
+        ]
+      }
     ]
 })

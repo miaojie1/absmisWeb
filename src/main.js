@@ -6,17 +6,18 @@ import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import axios from 'axios'
-import VeeValidate from 'vee-validate'
+// import VeeValidate from 'vee-validate'
 import moment from 'moment'
-
+// import api from '../static/api/request'
 axios.defaults.withCredentials=true
 
 Vue.prototype.$http = axios
 Vue.prototype.moment = moment
+// Vue.prototype.$API= api
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 
-Vue.use(VeeValidate)
+// Vue.use(VeeValidate)
 
 Vue.prototype.HOST = '/absmis'
 

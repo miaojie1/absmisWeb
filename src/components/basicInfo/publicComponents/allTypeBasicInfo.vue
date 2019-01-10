@@ -3,7 +3,7 @@
 	<el-form label-width="180px" :model="basicInfoData" :rules="rules" ref="basicInfoData" :inline="true">
     <el-form-item label="联系人姓名" prop="contactPerson">
       <el-input v-model="basicInfoData.contactPerson"></el-input>
-    </el-form-item>	
+    </el-form-item>
     <el-form-item label="身份证号码" prop="idNumber">
       <el-input v-model="basicInfoData.idNumber"></el-input>
     </el-form-item>

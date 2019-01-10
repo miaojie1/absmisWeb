@@ -16,9 +16,7 @@
           <view-header></view-header>
         </el-row>
         <el-row>
-          <transition name="el-fade-in">
-            <router-view></router-view>
-          </transition>
+          <router-view></router-view>
         </el-row>
       </div>
     </div>
@@ -38,16 +36,17 @@ export default {
       return{} 
     },  
     components: {
-        indexFooter,
-        indexHeader,
-        navBar,
-        viewHeader
-    },
-    methods: {
+      indexFooter,
+      indexHeader,
+      navBar,
+      viewHeader
     }
 }
 </script>
 <style>
+/* * {
+  box-sizing: border-box;
+} */
 html,body{
   height:100%;
   margin:0;
@@ -77,10 +76,57 @@ html,body{
     min-height: 36px;
 }
 .row-bg {
-    padding: 10px 0;
-    background-color: #f9fafc;
+  padding: 10px 0;
+  background-color: #f9fafc;
 }
-.header{
+.header {
+  margin: 0 auto;
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  background: #464C5B;
+}
+.main {
+  width: 100%;
+  position: absolute;
+  top: 60px;
+  bottom: 20px;
+  overflow: auto;
+  padding-top: 10px;
+}
+.menu {
+  width: 250px;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  bottom: 20px;
+  background: #464C5B;
+}
+.content {
+  margin-left: 250px;
+  overflow: auto;
+}
+.footer {
+  width: 100%;
+  color: #FFFFFF;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+  height: 20px;
+  line-height: 20px;
+  background: rgb(100, 109, 123);
+  /* background: #464C5B; */
+  font-size: 8pt;
+}
+/* .footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+} */
+/* .header{
   margin-top: 0px;
   width: 100%;
   height: 10%;
@@ -121,5 +167,5 @@ html,body{
   position:fixed;
   bottom: 0px;
   left: 0px;
-}
+} */
 </style>
