@@ -23,7 +23,9 @@ Vue.prototype.HOST = '/absmis'
 
 /* eslint-disable no-new */
 new Vue({
-	el: '#app',
+  el: '#app',
+  // 去掉路由中的#
+  mode: 'history',
 	router,
 	template: '<App/>',
 	components: { App }
